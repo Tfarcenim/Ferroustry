@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:coal_stairs",
+    "ferroustry:diamond_stairs",
+    "ferroustry:emerald_stairs",
+    "ferroustry:gold_stairs",
+    "ferroustry:iron_stairs",
+    "ferroustry:lapis_stairs",
+    "ferroustry:quartz_stairs",
+    "ferroustry:redstone_stairs"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#s#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ores/iron"
+    },
+    "s": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "ferroustry:iron_sapling"
+  }
+}

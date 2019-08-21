@@ -1,0 +1,6 @@
+{
+    "parent": "block/leaves",
+    "textures": {
+        "all": "ferroustry:block/quartz_leaves"
+    }
+}

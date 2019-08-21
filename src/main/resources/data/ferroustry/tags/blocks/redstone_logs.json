@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:redstone_log",
+    "ferroustry:redstone_wood",
+    "ferroustry:stripped_redstone_log",
+    "ferroustry:stripped_redstone_wood"
+  ]
+}

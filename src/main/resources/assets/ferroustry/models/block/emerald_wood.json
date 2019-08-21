@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ferroustry:block/emerald_log",
+        "side": "ferroustry:block/emerald_log"
+    }
+}

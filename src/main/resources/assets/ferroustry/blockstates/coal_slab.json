@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/coal_slab" },
+        "type=top": { "model": "ferroustry:block/coal_slab_top" },
+        "type=double": { "model": "ferroustry:block/coal_planks" }
+    }
+}

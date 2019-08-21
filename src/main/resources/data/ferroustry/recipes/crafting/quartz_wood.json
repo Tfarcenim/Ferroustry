@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "ferroustry:quartz_log"
+    }
+  },
+  "result": {
+    "item": "ferroustry:quartz_wood",
+    "count": 3
+  }
+}

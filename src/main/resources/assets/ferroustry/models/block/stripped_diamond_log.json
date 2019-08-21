@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ferroustry:block/stripped_diamond_log_top",
+        "side": "ferroustry:block/stripped_diamond_log"
+    }
+}

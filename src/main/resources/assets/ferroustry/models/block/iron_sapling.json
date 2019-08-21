@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "ferroustry:block/iron_sapling"
+    }
+}

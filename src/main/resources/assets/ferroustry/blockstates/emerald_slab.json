@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/emerald_slab" },
+        "type=top": { "model": "ferroustry:block/emerald_slab_top" },
+        "type=double": { "model": "ferroustry:block/emerald_planks" }
+    }
+}

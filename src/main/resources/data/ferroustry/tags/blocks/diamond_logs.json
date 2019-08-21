@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:diamond_log",
+    "ferroustry:diamond_wood",
+    "ferroustry:stripped_diamond_log",
+    "ferroustry:stripped_diamond_wood"
+  ]
+}

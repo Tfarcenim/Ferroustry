@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "ferroustry:block/redstone_planks",
+        "top": "ferroustry:block/redstone_planks",
+        "side": "ferroustry:block/redstone_planks"
+    }
+}

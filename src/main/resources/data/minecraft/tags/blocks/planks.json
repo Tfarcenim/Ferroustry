@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:coal_planks",
+    "ferroustry:diamond_planks",
+    "ferroustry:emerald_planks",
+    "ferroustry:gold_planks",
+    "ferroustry:iron_planks",
+    "ferroustry:lapis_planks",
+    "ferroustry:quartz_planks",
+    "ferroustry:redstone_planks"
+  ]
+}

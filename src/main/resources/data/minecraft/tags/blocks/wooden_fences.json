@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:coal_fence",
+    "ferroustry:diamond_fence",
+    "ferroustry:emerald_fence",
+    "ferroustry:gold_fence",
+    "ferroustry:iron_fence",
+    "ferroustry:lapis_fence",
+    "ferroustry:quartz_fence",
+    "ferroustry:redstone_fence"
+  ]
+}

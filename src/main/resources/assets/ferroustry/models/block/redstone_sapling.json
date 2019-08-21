@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "ferroustry:block/redstone_sapling"
+    }
+}

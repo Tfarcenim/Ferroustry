@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "ferroustry:redstone_logs"
+    }
+  ],
+  "result": {
+    "item": "ferroustry:redstone_planks",
+    "count": 4
+  }
+}

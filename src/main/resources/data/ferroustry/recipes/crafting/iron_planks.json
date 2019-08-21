@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "ferroustry:iron_logs"
+    }
+  ],
+  "result": {
+    "item": "ferroustry:iron_planks",
+    "count": 4
+  }
+}

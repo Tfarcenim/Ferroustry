@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ferroustry:block/gold_log_top",
+        "side": "ferroustry:block/gold_log"
+    }
+}

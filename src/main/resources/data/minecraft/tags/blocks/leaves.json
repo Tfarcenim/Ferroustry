@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:coal_leaves",
+    "ferroustry:diamond_leaves",
+    "ferroustry:emerald_leaves",
+    "ferroustry:gold_leaves",
+    "ferroustry:iron_leaves",
+    "ferroustry:lapis_leaves",
+    "ferroustry:quartz_leaves",
+    "ferroustry:redstone_leaves"
+  ]
+}
