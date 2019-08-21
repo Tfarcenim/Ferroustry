@@ -21,6 +21,7 @@ build
 eclipse
 run
 classes
+ResourceTrees\src\main\java\com\tfar\ferroustry\Scripts.java
 
 # Files from Forge MDK
 forge*changelog.txt
