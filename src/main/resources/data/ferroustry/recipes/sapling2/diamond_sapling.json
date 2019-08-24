@@ -7,13 +7,13 @@
   ],
   "key": {
     "#": {
-      "tag": "forge:ores/coal"
+      "tag": "forge:storage_blocks/diamond"
     },
     "s": {
       "tag": "minecraft:saplings"
     }
   },
   "result": {
-    "item": "ferroustry:coal_sapling"
+    "item": "ferroustry:diamond_sapling"
   }
 }

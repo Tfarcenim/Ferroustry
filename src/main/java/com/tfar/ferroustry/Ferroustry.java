@@ -6,19 +6,12 @@ import com.tfar.ferroustry.tree.ResourceTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.tags.BlockTags;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -30,6 +23,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ferroustry.MODID)
@@ -43,8 +38,17 @@ public class Ferroustry {
   public Ferroustry() {
     // Register the setup method for modloading
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-    // Register the doClientStuff method for modloading
-    FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+  }
+
+  public static boolean DEV;
+
+  static {
+    try {
+      Items.class.getField("field_190931_a");
+      DEV = false;
+    } catch (NoSuchFieldException e){
+      DEV = true;
+    }
   }
 
   private void setup(final FMLCommonSetupEvent event) {
@@ -57,9 +61,7 @@ public class Ferroustry {
       }
     });
     AxeItem.BLOCK_STRIPPING_MAP = map;
-  }
-
-  private void doClientStuff(final FMLClientSetupEvent event) {
+    if (DEV) EVENT_BUS.register(Scripts.JsonCrap.class);
   }
 
   // You can use EventBusSubscriber to automatically subscribe events on the contained class (this is subscribing to the MOD
