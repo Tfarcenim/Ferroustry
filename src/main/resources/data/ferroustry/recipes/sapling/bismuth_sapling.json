@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#s#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:ores/bismuth"
+    },
+    "s": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "ferroustry:bismuth_sapling"
+  }
+}

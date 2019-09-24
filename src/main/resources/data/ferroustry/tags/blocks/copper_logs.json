@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:copper_log",
+    "ferroustry:copper_wood",
+    "ferroustry:stripped_copper_log",
+    "ferroustry:stripped_copper_wood"
+  ]
+}

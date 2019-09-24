@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":    { "model": "ferroustry:block/stripped_platinum_log" },
+        "axis=z":    { "model": "ferroustry:block/stripped_platinum_log", "x": 90 },
+        "axis=x":    { "model": "ferroustry:block/stripped_platinum_log", "x": 90, "y": 90 }
+    }
+}

@@ -1,6 +1,5 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "ferroustry:block/coal_sapling"
-  }
+"parent": "item/generated",
+"textures": {"layer0": "ferroustry:block/coal_sapling"
+}
 }

@@ -8,6 +8,12 @@
     "ferroustry:iron_leaves",
     "ferroustry:lapis_leaves",
     "ferroustry:quartz_leaves",
-    "ferroustry:redstone_leaves"
+    "ferroustry:redstone_leaves",
+    "ferroustry:copper_leaves",
+    "ferroustry:tin_leaves",
+    "ferroustry:aluminum_leaves",
+    "ferroustry:bismuth_leaves",
+    "ferroustry:silver_leaves",
+    "ferroustry:lead_leaves"
   ]
 }

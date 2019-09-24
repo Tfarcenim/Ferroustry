@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "ferroustry:block/tin_log_top",
+        "side": "ferroustry:block/tin_log"
+    }
+}

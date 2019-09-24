@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "ferroustry:block/aluminum_planks",
+        "top": "ferroustry:block/aluminum_planks",
+        "side": "ferroustry:block/aluminum_planks"
+    }
+}

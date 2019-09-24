@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#s#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:storage_blocks/aluminum"
+    },
+    "s": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "ferroustry:aluminum_sapling"
+  }
+}

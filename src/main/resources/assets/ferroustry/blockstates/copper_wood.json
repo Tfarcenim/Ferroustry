@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":    { "model": "ferroustry:block/copper_wood" },
+        "axis=z":    { "model": "ferroustry:block/copper_wood", "x": 90 },
+        "axis=x":    { "model": "ferroustry:block/copper_wood", "x": 90, "y": 90 }
+    }
+}

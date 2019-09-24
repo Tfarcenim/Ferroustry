@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "ferroustry:bismuth_logs"
+    }
+  ],
+  "result": {
+    "item": "ferroustry:bismuth_planks",
+    "count": 4
+  }
+}

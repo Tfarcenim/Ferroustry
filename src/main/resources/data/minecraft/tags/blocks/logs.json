@@ -8,6 +8,12 @@
     "#ferroustry:iron_logs",
     "#ferroustry:lapis_logs",
     "#ferroustry:quartz_logs",
-    "#ferroustry:redstone_logs"
+    "#ferroustry:redstone_logs",
+    "#ferroustry:copper_logs",
+    "#ferroustry:tin_logs",
+    "#ferroustry:bismuth_logs",
+    "#ferroustry:silver_logs",
+    "#ferroustry:lead_logs",
+    "ferroustry:aluminum_logs"
   ]
 }

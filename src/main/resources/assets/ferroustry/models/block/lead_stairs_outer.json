@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "ferroustry:block/lead_planks",
+        "top": "ferroustry:block/lead_planks",
+        "side": "ferroustry:block/lead_planks"
+    }
+}

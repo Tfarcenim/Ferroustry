@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/tin_slab" },
+        "type=top": { "model": "ferroustry:block/tin_slab_top" },
+        "type=double": { "model": "ferroustry:block/tin_planks" }
+    }
+}

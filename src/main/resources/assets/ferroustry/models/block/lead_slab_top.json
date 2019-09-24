@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab_top",
+    "textures": {
+        "bottom": "ferroustry:block/lead_planks",
+        "top": "ferroustry:block/lead_planks",
+        "side": "ferroustry:block/lead_planks"
+    }
+}

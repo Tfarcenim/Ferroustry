@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "ferroustry:bismuth_logs"
+  },
+  "result": "ferroustry:bismuth_ingot",
+  "experience": 1,
+  "cookingtime": 100
+}

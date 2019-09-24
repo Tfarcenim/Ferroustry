@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":    { "model": "ferroustry:block/aluminum_log" },
+        "axis=z":    { "model": "ferroustry:block/aluminum_log", "x": 90 },
+        "axis=x":    { "model": "ferroustry:block/aluminum_log", "x": 90, "y": 90 }
+    }
+}

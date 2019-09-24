@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ferroustry:aluminum_planks"
+    }
+  },
+  "result": {
+    "item": "ferroustry:aluminum_stairs",
+    "count": 4
+  }
+}

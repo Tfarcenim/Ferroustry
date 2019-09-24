@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "#s#",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:storage_blocks/lead"
+    },
+    "s": {
+      "tag": "minecraft:saplings"
+    }
+  },
+  "result": {
+    "item": "ferroustry:lead_sapling"
+  }
+}

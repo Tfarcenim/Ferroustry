@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "ferroustry:aluminum_logs"
+    }
+  ],
+  "result": {
+    "item": "ferroustry:aluminum_planks",
+    "count": 4
+  }
+}

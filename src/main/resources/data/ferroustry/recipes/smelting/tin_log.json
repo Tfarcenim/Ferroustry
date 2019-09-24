@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "ferroustry:tin_logs"
+  },
+  "result": "ferroustry:tin_ingot",
+  "experience": 1,
+  "cookingtime": 100
+}

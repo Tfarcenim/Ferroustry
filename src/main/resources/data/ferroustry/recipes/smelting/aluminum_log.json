@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "tag": "ferroustry:aluminum_logs"
+  },
+  "result": "ferroustry:aluminum_ingot",
+  "experience": 1,
+  "cookingtime": 100
+}

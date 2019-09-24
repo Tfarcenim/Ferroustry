@@ -8,6 +8,11 @@
     "ferroustry:iron_fence",
     "ferroustry:lapis_fence",
     "ferroustry:quartz_fence",
-    "ferroustry:redstone_fence"
+    "ferroustry:redstone_fence",
+    "ferroustry:copper_fence",
+    "ferroustry:tin_fence",
+    "ferroustry:bismuth_fence",
+    "ferroustry:silver_fence",
+    "ferroustry:lead_fence"
   ]
 }

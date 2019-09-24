@@ -1,0 +1,8 @@
+{
+    "parent": "block/slab",
+    "textures": {
+        "bottom": "ferroustry:block/bismuth_planks",
+        "top": "ferroustry:block/bismuth_planks",
+        "side": "ferroustry:block/bismuth_planks"
+    }
+}

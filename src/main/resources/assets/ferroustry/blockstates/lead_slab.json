@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/lead_slab" },
+        "type=top": { "model": "ferroustry:block/lead_slab_top" },
+        "type=double": { "model": "ferroustry:block/lead_planks" }
+    }
+}

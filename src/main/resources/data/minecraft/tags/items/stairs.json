@@ -8,6 +8,11 @@
     "ferroustry:iron_stairs",
     "ferroustry:lapis_stairs",
     "ferroustry:quartz_stairs",
-    "ferroustry:redstone_stairs"
+    "ferroustry:redstone_stairs",
+    "ferroustry:copper_stairs",
+    "ferroustry:tin_stairs",
+    "ferroustry:bismuth_stairs",
+    "ferroustry:silver_stairs",
+    "ferroustry:lead_stairs"
   ]
 }

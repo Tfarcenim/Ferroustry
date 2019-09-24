@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:tin_log",
+    "ferroustry:tin_wood",
+    "ferroustry:stripped_tin_log",
+    "ferroustry:stripped_tin_wood"
+  ]
+}

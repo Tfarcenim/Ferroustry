@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/aluminum_slab" },
+        "type=top": { "model": "ferroustry:block/aluminum_slab_top" },
+        "type=double": { "model": "ferroustry:block/aluminum_planks" }
+    }
+}

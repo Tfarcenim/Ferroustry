@@ -69,8 +69,6 @@ public class Ferroustry {
   @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
   public static class RegistryEvents {
 
-    public static final String[] materials = new String[]
-            {"coal", "diamond", "emerald", "iron", "gold", "lapis", "quartz", "redstone"};
     public static final Set<Block> MOD_BLOCKS = new HashSet<>();
 
     @SubscribeEvent
@@ -80,12 +78,12 @@ public class Ferroustry {
       Block.Properties leaves = Block.Properties.create(Material.LEAVES).hardnessAndResistance(0.2F).tickRandomly().sound(SoundType.PLANT);
       Block.Properties sapling = Block.Properties.create(Material.PLANTS).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0).sound(SoundType.PLANT);
       Block.Properties plank = Block.Properties.create(Material.WOOD, MaterialColor.ADOBE).hardnessAndResistance(2, 6).sound(SoundType.WOOD);
-      for (String material : materials) {
+      for (OreType material : OreType.values()) {
         LogBlock logBlock = new LogBlock(MaterialColor.AIR, log);
         LeavesBlock leavesBlock = new LeavesBlock(leaves);
         register(logBlock, material + "_log", event.getRegistry());
         register(leavesBlock, material + "_leaves", event.getRegistry());
-        register(new ResourceSaplingBlock(new ResourceTree(logBlock, leavesBlock, material), sapling),
+        register(new ResourceSaplingBlock(new ResourceTree(logBlock, leavesBlock, material.toString()), sapling),
                 material + "_sapling", event.getRegistry());
         Block planks = new Block(plank);
         register(planks, material + "_planks", event.getRegistry());
@@ -105,6 +103,13 @@ public class Ferroustry {
       for (Block block : MOD_BLOCKS) {
         register(new BlockItem(block, properties), block.getRegistryName().getPath(), event.getRegistry());
       }
+      Item.Properties properties1 = new Item.Properties().group(ItemGroup.MATERIALS);
+      register(new Item(properties1),"aluminum_ingot",event.getRegistry());
+      register(new Item(properties1),"copper_ingot",event.getRegistry());
+      register(new Item(properties1),"silver_ingot",event.getRegistry());
+      register(new Item(properties1),"lead_ingot",event.getRegistry());
+      register(new Item(properties1),"tin_ingot",event.getRegistry());
+      register(new Item(properties1),"bismuth_ingot",event.getRegistry());
     }
 
     private static <T extends IForgeRegistryEntry<T>> void register(T obj, String name, IForgeRegistry<T> registry) {

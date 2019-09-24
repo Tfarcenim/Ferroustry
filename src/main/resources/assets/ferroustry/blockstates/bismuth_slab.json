@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "type=bottom": { "model": "ferroustry:block/bismuth_slab" },
+        "type=top": { "model": "ferroustry:block/bismuth_slab_top" },
+        "type=double": { "model": "ferroustry:block/bismuth_planks" }
+    }
+}

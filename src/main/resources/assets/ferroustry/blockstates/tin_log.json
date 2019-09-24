@@ -1,0 +1,7 @@
+{
+    "variants": {
+        "axis=y":    { "model": "ferroustry:block/tin_log" },
+        "axis=z":    { "model": "ferroustry:block/tin_log", "x": 90 },
+        "axis=x":    { "model": "ferroustry:block/tin_log", "x": 90, "y": 90 }
+    }
+}

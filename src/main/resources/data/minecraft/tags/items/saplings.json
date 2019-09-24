@@ -1,0 +1,18 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:coal_sapling",
+    "ferroustry:diamond_sapling",
+    "ferroustry:emerald_sapling",
+    "ferroustry:gold_sapling",
+    "ferroustry:iron_sapling",
+    "ferroustry:lapis_sapling",
+    "ferroustry:quartz_sapling",
+    "ferroustry:redstone_sapling",
+    "ferroustry:copper_sapling",
+    "ferroustry:tin_sapling",
+    "ferroustry:bismuth_sapling",
+    "ferroustry:silver_sapling",
+    "ferroustry:lead_sapling"
+  ]
+}
