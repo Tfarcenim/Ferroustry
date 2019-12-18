@@ -103,6 +103,7 @@ public class Ferroustry {
       for (Block block : MOD_BLOCKS) {
         register(new BlockItem(block, properties), block.getRegistryName().getPath(), event.getRegistry());
       }
+
       Item.Properties properties1 = new Item.Properties().group(ItemGroup.MATERIALS);
       register(new Item(properties1),"aluminum_ingot",event.getRegistry());
       register(new Item(properties1),"copper_ingot",event.getRegistry());
