@@ -1,45 +1,44 @@
 package com.tfar.ferroustry.tree;
 
-import com.tfar.ferroustry.Ferroustry;
-import com.tfar.ferroustry.feature.BigResourceTreeFeature;
-import com.tfar.ferroustry.feature.ResourceTreeFeature;
-import com.tfar.ferroustry.feature.Tall2x2ResourceTreeFeature;
-import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.LogBlock;
 import net.minecraft.block.trees.BigTree;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.feature.AbstractTreeFeature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.HugeTreeFeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ResourceTree extends BigTree {
 
-  public final LogBlock log;
-  public final LeavesBlock leaf;
-  private String material;
+  private final Feature<TreeFeatureConfig> treeFeatureConfigFeature;
+  private final TreeFeatureConfig treeFeatureConfig;
+  private final Feature<HugeTreeFeatureConfig> hugeTreeFeatureConfigFeature;
+  private final HugeTreeFeatureConfig hugeTreeFeatureConfig1;
+  private final HugeTreeFeatureConfig hugeTreeFeatureConfig2;
 
-  public ResourceTree(LogBlock log, LeavesBlock leaf, String material) {
-    this.log = log;
-    this.leaf = leaf;
-    this.material = material;
+  public ResourceTree(Feature<TreeFeatureConfig> treeFeatureConfigFeature,
+                      TreeFeatureConfig treeFeatureConfig, Feature<HugeTreeFeatureConfig> hugeTreeFeatureConfigFeature,
+                      HugeTreeFeatureConfig hugeTreeFeatureConfig1,HugeTreeFeatureConfig hugeTreeFeatureConfig2) {
+    this.treeFeatureConfigFeature = treeFeatureConfigFeature;
+    this.treeFeatureConfig = treeFeatureConfig;
+    this.hugeTreeFeatureConfigFeature = hugeTreeFeatureConfigFeature;
+    this.hugeTreeFeatureConfig1 = hugeTreeFeatureConfig1;
+    this.hugeTreeFeatureConfig2 = hugeTreeFeatureConfig2;
   }
 
   @Nullable
   @Override
-  protected AbstractTreeFeature<NoFeatureConfig> getBigTreeFeature(Random random) {
-    return new Tall2x2ResourceTreeFeature(NoFeatureConfig::deserialize, true,true,log,leaf,
-            ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Ferroustry.MODID,material+"_sapling")));
+  protected ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(Random random) {
+    return treeFeatureConfigFeature.configured(treeFeatureConfig);
   }
 
   @Nullable
   @Override
-  protected AbstractTreeFeature<NoFeatureConfig> getTreeFeature(Random random) {
-    return random.nextInt(10) == 0 ? new BigResourceTreeFeature(NoFeatureConfig::deserialize, true,log,leaf,
-            ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Ferroustry.MODID,material+"_sapling"))) :
-            new ResourceTreeFeature(NoFeatureConfig::deserialize, true, false,log,leaf,
-                    ForgeRegistries.BLOCKS.getValue(new ResourceLocation(Ferroustry.MODID,material+"_sapling")));
+  protected ConfiguredFeature<HugeTreeFeatureConfig,?> getConfiguredMegaFeature(Random random) {
+    return hugeTreeFeatureConfigFeature.configured(random.nextBoolean()
+            ? hugeTreeFeatureConfig1
+            : hugeTreeFeatureConfig2);
   }
+
 }
