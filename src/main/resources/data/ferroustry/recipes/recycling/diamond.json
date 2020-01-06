@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "recycling",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ferroustry:diamond_sapling"
+    }
+  },
+  "result": {
+    "item": "minecraft:diamond"
+  }
+}

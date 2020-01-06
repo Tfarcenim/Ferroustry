@@ -6,29 +6,37 @@ import static com.tfar.ferroustry.Ferroustry.MODID;
 
 public enum OreType {
   //vanilla
-  coal(false,false),
-  diamond(false,false),
-  emerald(false,false),
-  gold(false,true),
-  iron(false,true),
-  lapis(false,false),
-  quartz(false,false),
-  redstone(false,false),
+  coal(false, false),
+  diamond(false, false),
+  emerald(false, false),
+  gold(false, true),
+  iron(false, true),
+  lapis(false, false),
+  quartz(false, false),
+  redstone(false, false),
   //modded
-  aluminum(true,true),
-  bismuth(true,true),
-  copper(true,true),
-  lead(true,true),
+  aluminum(true, true),
+  bismuth(true, true),
+  copper(true, true),
+  lead(true, true),
   //platinum(true),
-  silver(true,true),
-  tin(true,true);
+  silver(true, true),
+  tin(true, true);
 
   public final boolean isModded;
   public final boolean isIngot;
 
-  OreType(boolean isModded,boolean isIngot) {
+  OreType(boolean isModded, boolean isIngot) {
     this.isModded = isModded;
     this.isIngot = isIngot;
+  }
+
+  public String trueName(){
+    switch (this){
+      case lapis:return "lapis_lazuli";
+        default:
+          return toString();
+    }
   }
 
   public String getBasicState(BasicStateType type) {
@@ -36,6 +44,16 @@ public enum OreType {
             "  \"variants\": {\n" +
             "    \"\": {\n" +
             "      \"model\": \"ferroustry:block/" + toString() + "_" + type.toString() + "\"\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+  }
+
+  public String getPottedState() {
+    return "{\n" +
+            "  \"variants\": {\n" +
+            "    \"\": {\n" +
+            "      \"model\": \"ferroustry:block/potted_" + toString() + "_sapling" + "\"\n" +
             "    }\n" +
             "  }\n" +
             "}";
@@ -234,6 +252,15 @@ public enum OreType {
             "}\n";
   }
 
+  public String getPottedModel() {
+    return "{\n" +
+            "    \"parent\": \"block/flower_pot_cross\",\n" +
+            "    \"textures\": {\n" +
+            "        \"plant\":\"" + MODID + ":block/" + toString() + "_sapling\"\n" +
+            "    }\n" +
+            "}";
+  }
+
   public String getBasicItemmodel(BasicItemModelType type) {
     switch (type) {
 
@@ -246,56 +273,55 @@ public enum OreType {
                 "\"parent\": \"" + MODID + ":block/stripped_" + toString() + "_wood\"\n" +
                 "}\n";
       default:
-      return "{\n" +
-              "\"parent\": \"" + MODID + ":block/" + toString() +"_" + type.toString() + "\"\n" +
-              "}\n";
+        return "{\n" +
+                "\"parent\": \"" + MODID + ":block/" + toString() + "_" + type.toString() + "\"\n" +
+                "}\n";
     }
   }
 
   public String getSaplingItemmodel() {
-return "{\n" +
-    "\"parent\": \"item/generated\",\n" +
-    "\"textures\": {" +
-        "\"layer0\": \""+MODID+":block/"+toString()+"_sapling\"\n"+
-    "}\n" +
-        "}\n";
-}
+    return "{\n" +
+            "\"parent\": \"item/generated\",\n" +
+            "\"textures\": {" +
+            "\"layer0\": \"" + MODID + ":block/" + toString() + "_sapling\"\n" +
+            "}\n" +
+            "}\n";
+  }
 
   public String getFenceItemmodel() {
-   return  "{\n" +
-           "\"parent\":\""+MODID+":block/"+toString()+"_fence_inventory\"\n"+
-           "}\n";
+    return "{\n" +
+            "\"parent\":\"" + MODID + ":block/" + toString() + "_fence_inventory\"\n" +
+            "}\n";
   }
 
-
-
-  public static String getLootTable(Block b){
+  public static String getLootTable(Block b) {
     String name = b.getRegistryName().toString();
 
-return "{\n" +
-        "  \"type\": \"minecraft:block\",\n" +
-        "  \"pools\": [\n" +
-        "    {\n" +
-        "      \"name\": \""+MODID+"\",\n" +
-        "      \"rolls\": 1,\n" +
-        "      \"entries\": [\n" +
-        "        {\n" +
-        "          \"type\": \"minecraft:item\",\n" +
-        "          \"name\": \""+name+"\"\n" +
-        "        }\n" +
-        "      ],\n" +
-        "      \"conditions\": [\n" +
-        "        {\n" +
-        "          \"condition\": \"minecraft:survives_explosion\"\n" +
-        "        }\n" +
-        "      ]\n" +
-        "    }\n" +
-        "  ]\n" +
-        "}";
+    return "{\n" +
+            "  \"type\": \"minecraft:block\",\n" +
+            "  \"pools\": [\n" +
+            "    {\n" +
+            "      \"name\": \"" + MODID + "\",\n" +
+            "      \"rolls\": 1,\n" +
+            "      \"entries\": [\n" +
+            "        {\n" +
+            "          \"type\": \"minecraft:item\",\n" +
+            "          \"name\": \"" + name + "\"\n" +
+            "        }\n" +
+            "      ],\n" +
+            "      \"conditions\": [\n" +
+            "        {\n" +
+            "          \"condition\": \"minecraft:survives_explosion\"\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
   }
 
-  public String getLootTableLeaves(){
-    String line = isModded ? "          \"name\": \""+MODID+":"+toString()+"\"\n" : "          \"name\": \"minecraft:"+toString()+"\"\n";
+  public String getLootTableLeaves() {
+    String appendIngot = isIngot ? "_ingot":"";
+    String line = isModded ? "          \"name\": \"" + MODID + ":" + trueName() +appendIngot+ "\"\n" : "          \"name\": \"minecraft:" + trueName() +appendIngot+ "\"\n";
     return "{\n" +
             "  \"type\": \"minecraft:block\",\n" +
             "  \"pools\": [\n" +
@@ -334,7 +360,7 @@ return "{\n" +
             "                  ]\n" +
             "                }\n" +
             "              ],\n" +
-            "              \"name\": \"ferroustry:"+toString()+"_leaves\"\n" +
+            "              \"name\": \"ferroustry:" + toString() + "_leaves\"\n" +
             "            },\n" +
             "            {\n" +
             "              \"type\": \"minecraft:item\",\n" +
@@ -353,7 +379,7 @@ return "{\n" +
             "                  ]\n" +
             "                }\n" +
             "              ],\n" +
-            "              \"name\": \"ferroustry:"+toString()+"_sapling\"\n" +
+            "              \"name\": \"ferroustry:" + toString() + "_sapling\"\n" +
             "            }\n" +
             "          ]\n" +
             "        }\n" +
@@ -369,11 +395,11 @@ return "{\n" +
             "              \"condition\": \"minecraft:table_bonus\",\n" +
             "              \"enchantment\": \"minecraft:fortune\",\n" +
             "              \"chances\": [\n" +
-            "                0.02,\n" +
-            "                0.022222223,\n" +
-            "                0.025,\n" +
-            "                0.033333335,\n" +
-            "                0.1\n" +
+            "                0.002,\n" +
+            "                0.0022222223,\n" +
+            "                0.0025,\n" +
+            "                0.0033333335,\n" +
+            "                0.01\n" +
             "              ]\n" +
             "            }\n" +
             "          ],\n" +
@@ -436,11 +462,11 @@ return "{\n" +
             "              \"condition\": \"minecraft:table_bonus\",\n" +
             "              \"enchantment\": \"minecraft:fortune\",\n" +
             "              \"chances\": [\n" +
-            "                0.005,\n" +
-            "                0.0055555557,\n" +
-            "                0.00625,\n" +
-            "                0.008333334,\n" +
-            "                0.025\n" +
+            "                0.05,\n" +
+            "                0.055555557,\n" +
+            "                0.0625,\n" +
+            "                0.08333334,\n" +
+            "                0.25\n" +
             "              ]\n" +
             "            }\n" +
             "          ],\n" +
@@ -481,23 +507,61 @@ return "{\n" +
             "}";
   }
 
-  public String getPlanksRecipe(){
+  public String getPottedLootTable(){
+    return "{\n" +
+            "  \"type\": \"minecraft:block\",\n" +
+            "  \"pools\": [\n" +
+            "    {\n" +
+            "      \"rolls\": 1,\n" +
+            "      \"name\": \"ferroustry\",\n" +
+            "      \"entries\": [\n" +
+            "        {\n" +
+            "          \"type\": \"minecraft:item\",\n" +
+            "          \"name\": \"minecraft:flower_pot\"\n" +
+            "        }\n" +
+            "      ],\n" +
+            "      \"conditions\": [\n" +
+            "        {\n" +
+            "          \"condition\": \"minecraft:survives_explosion\"\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    },\n" +
+            "    {\n" +
+            "      \"rolls\": 1,\n" +
+            "      \"name\": \"ferroustry\",\n" +
+            "      \"entries\": [\n" +
+            "        {\n" +
+            "          \"type\": \"minecraft:item\",\n" +
+            "          \"name\": \"ferroustry:"+toString()+"_sapling\"\n" +
+            "        }\n" +
+            "      ],\n" +
+            "      \"conditions\": [\n" +
+            "        {\n" +
+            "          \"condition\": \"minecraft:survives_explosion\"\n" +
+            "        }\n" +
+            "      ]\n" +
+            "    }\n" +
+            "  ]\n" +
+            "}";
+  }
+
+  public String getPlanksRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shapeless\",\n" +
             "  \"group\": \"planks\",\n" +
             "  \"ingredients\": [\n" +
             "    {\n" +
-            "      \"tag\": \"ferroustry:"+toString()+"_logs\"\n" +
+            "      \"tag\": \"ferroustry:" + toString() + "_logs\"\n" +
             "    }\n" +
             "  ],\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_planks\",\n" +
+            "    \"item\": \"ferroustry:" + this + "_planks\",\n" +
             "    \"count\": 4\n" +
             "  }\n" +
             "}";
   }
 
-  public String getFenceRecipe(){
+  public String getFenceRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shaped\",\n" +
             "  \"group\": \"wooden_fence\",\n" +
@@ -510,17 +574,17 @@ return "{\n" +
             "      \"tag\": \"forge:rods/wooden\"\n" +
             "    },\n" +
             "    \"W\": {\n" +
-            "      \"item\": \"ferroustry:"+this+"_planks\"\n" +
+            "      \"item\": \"ferroustry:" + this + "_planks\"\n" +
             "    }\n" +
             "  },\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_fence\",\n" +
+            "    \"item\": \"ferroustry:" + this + "_fence\",\n" +
             "    \"count\": 3\n" +
             "  }\n" +
             "}";
   }
 
-  public String getSlabRecipe(){
+  public String getSlabRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shaped\",\n" +
             "  \"group\": \"wooden_slab\",\n" +
@@ -529,17 +593,17 @@ return "{\n" +
             "  ],\n" +
             "  \"key\": {\n" +
             "    \"#\": {\n" +
-            "      \"item\": \"ferroustry:"+this+"_planks\"\n" +
+            "      \"item\": \"ferroustry:" + this + "_planks\"\n" +
             "    }\n" +
             "  },\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_slab\",\n" +
+            "    \"item\": \"ferroustry:" + this + "_slab\",\n" +
             "    \"count\": 6\n" +
             "  }\n" +
             "}";
   }
 
-  public String getStairsRecipe(){
+  public String getStairsRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shaped\",\n" +
             "  \"group\": \"wooden_stairs\",\n" +
@@ -550,17 +614,17 @@ return "{\n" +
             "  ],\n" +
             "  \"key\": {\n" +
             "    \"#\": {\n" +
-            "      \"item\": \"ferroustry:"+this+"_planks\"\n" +
+            "      \"item\": \"ferroustry:" + this + "_planks\"\n" +
             "    }\n" +
             "  },\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_stairs\",\n" +
+            "    \"item\": \"ferroustry:" + this + "_stairs\",\n" +
             "    \"count\": 4\n" +
             "  }\n" +
             "}";
   }
 
-  public String getWoodRecipe(){
+  public String getWoodRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shaped\",\n" +
             "  \"group\": \"bark\",\n" +
@@ -570,39 +634,17 @@ return "{\n" +
             "  ],\n" +
             "  \"key\": {\n" +
             "    \"#\": {\n" +
-            "      \"item\": \"ferroustry:"+this+"_log\"\n" +
+            "      \"item\": \"ferroustry:" + this + "_log\"\n" +
             "    }\n" +
             "  },\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_wood\",\n" +
+            "    \"item\": \"ferroustry:" + this + "_wood\",\n" +
             "    \"count\": 3\n" +
             "  }\n" +
             "}";
   }
 
-  public String getSaplingRecipe(){
-    return "{\n" +
-            "  \"type\": \"minecraft:crafting_shaped\",\n" +
-            "  \"pattern\": [\n" +
-            "    \" # \",\n" +
-            "    \"#s#\",\n" +
-            "    \" # \"\n" +
-            "  ],\n" +
-            "  \"key\": {\n" +
-            "    \"#\": {\n" +
-            "      \"tag\": \"forge:ores/"+this+"\"\n" +
-            "    },\n" +
-            "    \"s\": {\n" +
-            "      \"tag\": \"minecraft:saplings\"\n" +
-            "    }\n" +
-            "  },\n" +
-            "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_sapling\"\n" +
-            "  }\n" +
-            "}";
-  }
-
-  public String getSapling2Recipe(){
+  public String getSaplingRecipe() {
     return "{\n" +
             "  \"type\": \"minecraft:crafting_shaped\",\n" +
             "  \"pattern\": [\n" +
@@ -612,50 +654,90 @@ return "{\n" +
             "  ],\n" +
             "  \"key\": {\n" +
             "    \"#\": {\n" +
-            "      \"tag\": \"forge:ores/"+this+"\"\n" +
+            "      \"tag\": \"forge:ores/" + this + "\"\n" +
             "    },\n" +
             "    \"s\": {\n" +
             "      \"tag\": \"minecraft:saplings\"\n" +
             "    }\n" +
             "  },\n" +
             "  \"result\": {\n" +
-            "    \"item\": \"ferroustry:"+this+"_sapling\"\n" +
+            "    \"item\": \"ferroustry:" + this + "_sapling\"\n" +
             "  }\n" +
             "}";
   }
 
-  public String getBlastingRecipe(){
-    String s = isModded ? MODID : "minecraft";
-    String s1 = isIngot ? "_ingot":"";
+  public String getRecyclingRecipe() {
+    String domain = isModded ? MODID : "minecraft";
+    String s1 = isIngot ? "_ingot" : "";
+    return "{\n" +
+            "  \"type\": \"minecraft:crafting_shaped\",\n" +
+            "  \"group\": \"recycling\",\n" +
+            "  \"pattern\": [\n" +
+            "    \"###\",\n" +
+            "    \"###\",\n" +
+            "    \"###\"\n" +
+            "  ],\n" +
+            "  \"key\": {\n" +
+            "    \"#\": {\n" +
+            "      \"item\": \"ferroustry:" + this + "_sapling\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"result\": {\n" +
+            "    \"item\": \""+domain+":" + trueName() + s1+"\"\n" +
+            "  }\n" +
+            "}";
+  }
+
+  public String getSapling2Recipe() {
+    return "{\n" +
+            "  \"type\": \"minecraft:crafting_shaped\",\n" +
+            "  \"pattern\": [\n" +
+            "    \" # \",\n" +
+            "    \"#s#\",\n" +
+            "    \" # \"\n" +
+            "  ],\n" +
+            "  \"key\": {\n" +
+            "    \"#\": {\n" +
+            "      \"tag\": \"forge:storage_blocks/" + this + "\"\n" +
+            "    },\n" +
+            "    \"s\": {\n" +
+            "      \"tag\": \"minecraft:saplings\"\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"result\": {\n" +
+            "    \"item\": \"ferroustry:" + this + "_sapling\"\n" +
+            "  }\n" +
+            "}";
+  }
+
+  public String getBlastingRecipe() {
+    String domain = isModded ? MODID : "minecraft";
+    String s1 = isIngot ? "_ingot" : "";
     return "{\n" +
             "  \"type\": \"minecraft:blasting\",\n" +
             "  \"ingredient\": {\n" +
-            "    \"tag\": \"ferroustry:"+this+"_logs\"\n" +
+            "    \"tag\": \"ferroustry:" + this + "_logs\"\n" +
             "  },\n" +
-            "  \"result\": \""+s+":"+this+s1+"\",\n" +
+            "  \"result\": \"" + domain + ":" + trueName() + s1 + "\",\n" +
             "  \"experience\": 1,\n" +
             "  \"cookingtime\": 100\n" +
             "}";
   }
 
-  public String getLogTags(){
+  public String getLogTags() {
     return "{\n" +
             "  \"replace\": false,\n" +
             "  \"values\": [\n" +
-            "    \"ferroustry:"+this+"_log\",\n" +
-            "    \"ferroustry:"+this+"_wood\",\n" +
-            "    \"ferroustry:stripped_"+this+"_log\",\n" +
-            "    \"ferroustry:stripped_"+this+"_wood\"\n" +
+            "    \"ferroustry:" + this + "_log\",\n" +
+            "    \"ferroustry:" + this + "_wood\",\n" +
+            "    \"ferroustry:stripped_" + this + "_log\",\n" +
+            "    \"ferroustry:stripped_" + this + "_wood\"\n" +
             "  ]\n" +
             "}";
   }
 
-  public enum ResourceType {
-    ingot,gem
-  }
-
   public enum BasicItemModelType {
-    log,stripped_log,wood,stripped_wood,planks,stairs,slab,leaves
+    log, stripped_log, wood, stripped_wood, planks, stairs, slab, leaves
   }
 
   public enum FenceModelType {

@@ -75,7 +75,7 @@ public class Ferroustry {
 
   private void client(final FMLClientSetupEvent event) {
     RegistryEvents.MOD_BLOCKS.stream()
-            .filter(block -> block instanceof SaplingBlock || block instanceof LeavesBlock)
+            .filter(block -> block instanceof SaplingBlock || block instanceof LeavesBlock || block instanceof FlowerPotBlock)
             .forEach(block -> {
               RenderType renderType = block instanceof LeavesBlock ? RenderType.cutoutMipped() : RenderType.cutout();
               RenderTypeLookup.setRenderLayer(block, renderType);
@@ -111,10 +111,13 @@ public class Ferroustry {
 
         HugeTreeFeatureConfig hugeTreeFeatureConfig1 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(13).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
         HugeTreeFeatureConfig hugeTreeFeatureConfig2 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(3).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
-
-        register(new ResourceSaplingBlock(new ResourceTree(feature, treeFeatureConfig,
-                        bigFeature, hugeTreeFeatureConfig1, hugeTreeFeatureConfig2), sapling),
+        ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(feature, treeFeatureConfig,
+                bigFeature, hugeTreeFeatureConfig1, hugeTreeFeatureConfig2), sapling);
+        register(resourceSaplingBlock,
                 material + "_sapling", event.getRegistry());
+        FlowerPotBlock flowerPotBlock = new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT,() -> resourceSaplingBlock,Block.Properties.of(Material.DECORATION).strength(0).noOcclusion());
+        ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(resourceSaplingBlock.getRegistryName(),() -> flowerPotBlock);
+        register(flowerPotBlock,"potted_"+material+"_sapling",event.getRegistry());
         Block planks = new Block(plank);
         register(planks, material + "_planks", event.getRegistry());
         register(new SlabBlock(Block.Properties.copy(planks)), material + "_slab", event.getRegistry());
@@ -131,6 +134,7 @@ public class Ferroustry {
       // register a new blocks here
       Item.Properties properties = new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS);
       for (Block block : MOD_BLOCKS) {
+        if (!(block instanceof FlowerPotBlock))
         register(new BlockItem(block, properties), block.getRegistryName().getPath(), event.getRegistry());
       }
       Item.Properties properties1 = new Item.Properties().tab(ItemGroup.TAB_MATERIALS);

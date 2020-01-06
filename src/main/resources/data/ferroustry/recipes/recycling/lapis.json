@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "recycling",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ferroustry:lapis_sapling"
+    }
+  },
+  "result": {
+    "item": "minecraft:lapis_lazuli"
+  }
+}

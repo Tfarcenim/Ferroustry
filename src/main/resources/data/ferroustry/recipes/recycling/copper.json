@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "recycling",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ferroustry:copper_sapling"
+    }
+  },
+  "result": {
+    "item": "ferroustry:copper_ingot"
+  }
+}
