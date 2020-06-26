@@ -10,11 +10,13 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.*;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -100,19 +102,17 @@ public class Ferroustry {
       Block.Properties sapling = Block.Properties.of(Material.LEAVES).noCollission().randomTicks().strength(0).sound(SoundType.GRASS);
       Block.Properties plank = Block.Properties.of(Material.WOOD, MaterialColor.NONE).strength(2, 6).sound(SoundType.WOOD);
       for (OreType material : OreType.values()) {
-        LogBlock logBlock = new LogBlock(MaterialColor.NONE, log);
+        RotatedPillarBlock logBlock = log(MaterialColor.NONE,MaterialColor.NONE);
         LeavesBlock leavesBlock = new LeavesBlock(leaves);
         register(logBlock, material + "_log", event.getRegistry());
         register(leavesBlock, material + "_leaves", event.getRegistry());
-        Feature<TreeFeatureConfig> feature = new TreeFeature(TreeFeatureConfig::deserialize);
-        TreeFeatureConfig treeFeatureConfig = new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()),
-                new SimpleBlockStateProvider(leavesBlock.defaultBlockState()), new BlobFoliagePlacer(2, 0)).baseHeight(4).heightRandA(2).foliageHeight(3).ignoreVines()/*.setSapling((net.minecraftforge.common.IPlantable)sapling)*/.build();
-        Feature<HugeTreeFeatureConfig> bigFeature = new MegaPineTree(HugeTreeFeatureConfig::deserialize);
+        BaseTreeFeatureConfig treeFeatureConfig = new BaseTreeFeatureConfig.Builder(
+                new SimpleBlockStateProvider(logBlock.defaultBlockState()),
+                new SimpleBlockStateProvider(leavesBlock.defaultBlockState()),
+                new BlobFoliagePlacer(2, 0, 0, 0, 3),
+                new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().build();
 
-        HugeTreeFeatureConfig hugeTreeFeatureConfig1 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(13).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
-        HugeTreeFeatureConfig hugeTreeFeatureConfig2 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(3).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
-        ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(feature, treeFeatureConfig,
-                bigFeature, hugeTreeFeatureConfig1, hugeTreeFeatureConfig2), sapling);
+        ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(treeFeatureConfig), sapling);
         register(resourceSaplingBlock,
                 material + "_sapling", event.getRegistry());
         FlowerPotBlock flowerPotBlock = new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT,() -> resourceSaplingBlock,Block.Properties.of(Material.DECORATION).strength(0).noOcclusion());
@@ -124,9 +124,15 @@ public class Ferroustry {
         register(new ResourceStairsBlock(planks.defaultBlockState(), Block.Properties.copy(planks)), material + "_stairs", event.getRegistry());
         register(new FenceBlock(plank), material + "_fence", event.getRegistry());
         register(new RotatedPillarBlock(log), material + "_wood", event.getRegistry());
-        register(new LogBlock(MaterialColor.WOOD, log), "stripped_" + material + "_log", event.getRegistry());
+        register(log(MaterialColor.WOOD, MaterialColor.PODZOL), "stripped_" + material + "_log", event.getRegistry());
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
+    }
+
+    private static RotatedPillarBlock log(MaterialColor p_235430_0_, MaterialColor p_235430_1_) {
+      return new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, (p_lambda$func_235430_a_$36_2_) ->
+              p_lambda$func_235430_a_$36_2_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_235430_0_ : p_235430_1_)
+              .strength(2.0F).sound(SoundType.WOOD));
     }
 
     @SubscribeEvent
