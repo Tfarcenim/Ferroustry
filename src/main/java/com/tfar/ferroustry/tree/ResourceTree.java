@@ -6,7 +6,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.HugeTreeFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ResourceTree extends BigTree {
@@ -27,13 +26,6 @@ public class ResourceTree extends BigTree {
     this.hugeTreeFeatureConfig2 = hugeTreeFeatureConfig2;
   }
 
-  @Nullable
-  @Override
-  protected ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(Random random) {
-    return treeFeatureConfigFeature.configured(treeFeatureConfig);
-  }
-
-  @Nullable
   @Override
   protected ConfiguredFeature<HugeTreeFeatureConfig,?> getConfiguredMegaFeature(Random random) {
     return hugeTreeFeatureConfigFeature.configured(random.nextBoolean()
@@ -41,4 +33,8 @@ public class ResourceTree extends BigTree {
             : hugeTreeFeatureConfig2);
   }
 
+  @Override
+  protected ConfiguredFeature<TreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean b) {
+    return treeFeatureConfigFeature.configured(treeFeatureConfig);
+  }
 }
