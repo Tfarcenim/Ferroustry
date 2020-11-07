@@ -2,6 +2,7 @@ package com.tfar.ferroustry;
 
 import com.tfar.ferroustry.block.ResourceSaplingBlock;
 import com.tfar.ferroustry.block.ResourceStairsBlock;
+import com.tfar.ferroustry.config.Config;
 import com.tfar.ferroustry.tree.ResourceTree;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -17,16 +18,20 @@ import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -39,7 +44,7 @@ public class Ferroustry {
 
   public static final String MODID = "ferroustry";
 
-  private static final Logger LOGGER = LogManager.getLogger();
+  public static final Logger LOGGER = LogManager.getLogger();
 
   public static final ItemGroup TAB = new ItemGroup(MODID) {
     @Override
@@ -50,8 +55,11 @@ public class Ferroustry {
 
   public Ferroustry() {
     // Register the setup method for modloading
+    ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC);
+
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
     FMLJavaModLoadingContext.get().getModEventBus().addListener(this::client);
+
   }
 
   public static boolean DEV;
@@ -115,8 +123,7 @@ public class Ferroustry {
                 new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().build();
 
         ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(treeFeatureConfig), sapling);
-        register(resourceSaplingBlock,
-                material + "_sapling", event.getRegistry());
+        register(resourceSaplingBlock,material + "_sapling", event.getRegistry());
         FlowerPotBlock flowerPotBlock = new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT,() -> resourceSaplingBlock,Block.Properties.of(Material.DECORATION).strength(0).noOcclusion());
         ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(resourceSaplingBlock.getRegistryName(),() -> flowerPotBlock);
         register(flowerPotBlock,"potted_"+material+"_sapling",event.getRegistry());
@@ -130,6 +137,8 @@ public class Ferroustry {
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
     }
+
+
 
     private static RotatedPillarBlock log(MaterialColor p_235430_0_, MaterialColor p_235430_1_) {
       return new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, (p_lambda$func_235430_a_$36_2_) ->
