@@ -1,6 +1,5 @@
 package com.tfar.ferroustry;
 
-import com.google.common.collect.ImmutableList;
 import com.tfar.ferroustry.block.ResourceSaplingBlock;
 import com.tfar.ferroustry.block.ResourceStairsBlock;
 import com.tfar.ferroustry.tree.ResourceTree;
@@ -15,7 +14,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
-import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -34,9 +32,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static net.minecraft.world.gen.surfacebuilders.SurfaceBuilder.PODZOL;
-import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
-
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(Ferroustry.MODID)
 public class Ferroustry {
@@ -45,6 +40,13 @@ public class Ferroustry {
   public static final String MODID = "ferroustry";
 
   private static final Logger LOGGER = LogManager.getLogger();
+
+  public static final ItemGroup TAB = new ItemGroup(MODID) {
+    @Override
+    public ItemStack makeIcon() {
+      return new ItemStack(Items.IRON_INGOT);
+    }
+  };
 
   public Ferroustry() {
     // Register the setup method for modloading
@@ -72,7 +74,8 @@ public class Ferroustry {
             .forEach(block -> map.put(block, ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MODID, "stripped_" +
             block.getRegistryName().getPath()))));
     AxeItem.STRIPABLES = map;
-    if (DEV) EVENT_BUS.register(Scripts.JsonCrap.class);
+    //TODO whatever this one does needs to be fixed
+    //if (DEV) EVENT_BUS.register(Scripts.JsonCrap.class);
   }
 
   private void client(final FMLClientSetupEvent event) {
@@ -93,7 +96,6 @@ public class Ferroustry {
 
     public static final Set<Feature<?>> FEATURES = new HashSet<>();
 
-
     @SubscribeEvent
     public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
       // register a new blocks here
@@ -109,7 +111,7 @@ public class Ferroustry {
         BaseTreeFeatureConfig treeFeatureConfig = new BaseTreeFeatureConfig.Builder(
                 new SimpleBlockStateProvider(logBlock.defaultBlockState()),
                 new SimpleBlockStateProvider(leavesBlock.defaultBlockState()),
-                new BlobFoliagePlacer(2, 0, 0, 0, 3),
+                new BlobFoliagePlacer(FeatureSpread.of(2,0), FeatureSpread.of(0,0), 3),
                 new StraightTrunkPlacer(4, 2, 0), new TwoLayerFeature(1, 0, 1)).ignoreVines().build();
 
         ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(treeFeatureConfig), sapling);
@@ -138,12 +140,12 @@ public class Ferroustry {
     @SubscribeEvent
     public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
       // register a new blocks here
-      Item.Properties properties = new Item.Properties().tab(ItemGroup.TAB_BUILDING_BLOCKS);
+      Item.Properties properties = new Item.Properties().tab(TAB);
       for (Block block : MOD_BLOCKS) {
         if (!(block instanceof FlowerPotBlock))
         register(new BlockItem(block, properties), block.getRegistryName().getPath(), event.getRegistry());
       }
-      Item.Properties properties1 = new Item.Properties().tab(ItemGroup.TAB_MATERIALS);
+      Item.Properties properties1 = new Item.Properties().tab(TAB);
       register(new Item(properties1), "aluminum_ingot", event.getRegistry());
       register(new Item(properties1), "copper_ingot", event.getRegistry());
       register(new Item(properties1), "silver_ingot", event.getRegistry());
