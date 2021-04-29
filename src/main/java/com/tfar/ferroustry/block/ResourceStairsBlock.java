@@ -7,7 +7,7 @@ public class ResourceStairsBlock extends StairsBlock {
 
   //majong made it protected
   public ResourceStairsBlock(BlockState p_i48321_1_, Properties p_i48321_2_) {
-    super(p_i48321_1_, p_i48321_2_);
+    super(() -> p_i48321_1_, p_i48321_2_);
   }
 
 

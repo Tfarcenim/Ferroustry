@@ -17,15 +17,15 @@ archivesBaseName = "${modid}"
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
 minecraft {
-    mappings channel: 'official', version: "1.16.5"
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    runs {
+	mappings channel: 'official', version: '1.16.5'
+	accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+	runs {
         client {
             workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                ${modid} {
+                ferroustry {
                     source sourceSets.main
                 }
             }
@@ -33,9 +33,10 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             mods {
-                ${modid} {
+                ferroustry {
                     source sourceSets.main
                 }
             }
@@ -65,4 +66,5 @@ dependencies {
 
     compileOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-${minecraft_release}:${minecraft_release}-${top_version}:api")
     runtimeOnly fg.deobf("mcjty.theoneprobe:TheOneProbe-${minecraft_release}:${minecraft_release}-${top_version}")
+
 }
