@@ -23,7 +23,14 @@ public class ResourceTree extends BigTree {
   }
 
   @Nullable
+  @Override
+  protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredMegaFeature(Random p_225547_1_) {
+    //TODO no tall trees atm
+    return Feature.TREE.configured(baseTreeFeatureConfig);
+  }
+
+  /*@Nullable
   protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredMegaFeature(Random p_225547_1_) {
     return Feature.TREE.configured(p_225547_1_.nextBoolean() ? DefaultBiomeFeatures.MEGA_SPRUCE_TREE_CONFIG : DefaultBiomeFeatures.MEGA_PINE_TREE_CONFIG);
-  }
+  }*/
 }

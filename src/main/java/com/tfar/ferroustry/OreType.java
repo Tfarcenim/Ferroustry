@@ -16,10 +16,14 @@ public enum OreType {
   redstone(false, false),
   //modded
   aluminum(true, true),
-  bismuth(true, true),
   copper(true, true),
   lead(true, true),
-  //platinum(true),
+  //bismuth(true, true),
+  //platinum(true, true),
+  //zinc(true, true),
+  //nickel(true, true),
+  //uranium(true, true),
+  //osmium(true, true),
   silver(true, true),
   tin(true, true);
 
