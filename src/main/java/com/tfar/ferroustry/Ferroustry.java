@@ -91,7 +91,7 @@ public class Ferroustry {
       AbstractBlock.Properties sapling = AbstractBlock.Properties.of(Material.LEAVES).noCollission().randomTicks().strength(0).sound(SoundType.GRASS);
       AbstractBlock.Properties plank = AbstractBlock.Properties.of(Material.WOOD, MaterialColor.NONE).strength(2, 6).sound(SoundType.WOOD);
       for (OreType material : OreType.values()) {
-        Block logBlock = new Block(log);
+        RotatedPillarBlock logBlock = new RotatedPillarBlock(log);
         LeavesBlock leavesBlock = new LeavesBlock(leaves);
         register(logBlock, material + "_log", event.getRegistry());
         register(leavesBlock, material + "_leaves", event.getRegistry());
@@ -124,7 +124,7 @@ public class Ferroustry {
         register(new StairsBlock(planks.defaultBlockState(), AbstractBlock.Properties.copy(planks)), material + "_stairs", event.getRegistry());
         register(new FenceBlock(plank), material + "_fence", event.getRegistry());
         register(new RotatedPillarBlock(log), material + "_wood", event.getRegistry());
-        register(new Block(log), "stripped_" + material + "_log", event.getRegistry());
+        register(new RotatedPillarBlock(log), "stripped_" + material + "_log", event.getRegistry());
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
     }
