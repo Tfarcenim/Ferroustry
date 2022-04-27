@@ -1,7 +1,7 @@
 {
   "type": "minecraft:blasting",
   "ingredient": {
-    "tag": "ferroustry:lapis_logs"
+    "tag": "ferroustry:lapis_lazuli_logs"
   },
   "result": "minecraft:lapis_lazuli",
   "experience": 1,

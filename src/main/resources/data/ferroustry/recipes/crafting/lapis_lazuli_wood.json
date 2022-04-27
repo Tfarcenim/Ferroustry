@@ -7,11 +7,11 @@
   ],
   "key": {
     "#": {
-      "item": "ferroustry:lapis_log"
+      "item": "ferroustry:lapis_lazuli_log"
     }
   },
   "result": {
-    "item": "ferroustry:lapis_wood",
+    "item": "ferroustry:lapis_lazuli_wood",
     "count": 3
   }
 }

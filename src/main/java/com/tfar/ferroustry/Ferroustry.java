@@ -15,6 +15,8 @@ import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.treedecorator.AlterGroundTreeDecorator;
+import net.minecraft.world.gen.trunkplacer.AbstractTrunkPlacer;
+import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -32,7 +34,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static net.minecraft.world.gen.surfacebuilders.SurfaceBuilder.PODZOL;
 import static net.minecraftforge.common.MinecraftForge.EVENT_BUS;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -70,7 +71,7 @@ public class Ferroustry {
             .forEach(block -> map.put(block, ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MODID, "stripped_" +
             block.getRegistryName().getPath()))));
     AxeItem.STRIPABLES = map;
-    if (DEV) EVENT_BUS.register(Scripts.JsonCrap.class);
+    //if (DEV) EVENT_BUS.register(Scripts.JsonCrap.class);
   }
 
   private void client(final FMLClientSetupEvent event) {
@@ -100,17 +101,21 @@ public class Ferroustry {
       Block.Properties sapling = Block.Properties.of(Material.LEAVES).noCollission().randomTicks().strength(0).sound(SoundType.GRASS);
       Block.Properties plank = Block.Properties.of(Material.WOOD, MaterialColor.NONE).strength(2, 6).sound(SoundType.WOOD);
       for (OreType material : OreType.values()) {
-        LogBlock logBlock = new LogBlock(MaterialColor.NONE, log);
+        Block logBlock = new Block(log);
         LeavesBlock leavesBlock = new LeavesBlock(leaves);
         register(logBlock, material + "_log", event.getRegistry());
         register(leavesBlock, material + "_leaves", event.getRegistry());
-        Feature<TreeFeatureConfig> feature = new TreeFeature(TreeFeatureConfig::deserialize);
-        TreeFeatureConfig treeFeatureConfig = new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()),
-                new SimpleBlockStateProvider(leavesBlock.defaultBlockState()), new BlobFoliagePlacer(2, 0)).baseHeight(4).heightRandA(2).foliageHeight(3).ignoreVines()/*.setSapling((net.minecraftforge.common.IPlantable)sapling)*/.build();
-        Feature<HugeTreeFeatureConfig> bigFeature = new MegaPineTree(HugeTreeFeatureConfig::deserialize);
+        Feature<BaseTreeFeatureConfig> feature = new TreeFeature(BaseTreeFeatureConfig.CODEC);
+        BaseTreeFeatureConfig treeFeatureConfig = new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()),
+                new SimpleBlockStateProvider(leavesBlock.defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(2), 0),
+                new StraightTrunkPlacer(0, 0, 0), new TwoLayerFeature(0, 0, 0))
+                .ignoreVines()/*.setSapling((net.minecraftforge.common.IPlantable)sapling)*/.build();
+        Feature<BaseTreeFeatureConfig> bigFeature = new TreeFeature(BaseTreeFeatureConfig.CODEC);
 
-        HugeTreeFeatureConfig hugeTreeFeatureConfig1 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(13).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
-        HugeTreeFeatureConfig hugeTreeFeatureConfig2 = new HugeTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState())).baseHeight(13).heightInterval(15).crownHeight(3).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(PODZOL))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
+        BaseTreeFeatureConfig hugeTreeFeatureConfig1 = new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(2), 0),
+                new StraightTrunkPlacer(0, 0, 0), new TwoLayerFeature(0, 0, 0)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.defaultBlockState()))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
+        BaseTreeFeatureConfig hugeTreeFeatureConfig2 = new BaseTreeFeatureConfig.Builder(new SimpleBlockStateProvider(logBlock.defaultBlockState()), new SimpleBlockStateProvider(leavesBlock.defaultBlockState()), new BlobFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(2), 0),
+                new StraightTrunkPlacer(0, 0, 0), new TwoLayerFeature(0, 0, 0)).decorators(ImmutableList.of(new AlterGroundTreeDecorator(new SimpleBlockStateProvider(Blocks.PODZOL.defaultBlockState()))))./*setSapling((net.minecraftforge.common.IPlantable)sapling).*/build();
         ResourceSaplingBlock resourceSaplingBlock = new ResourceSaplingBlock(new ResourceTree(feature, treeFeatureConfig,
                 bigFeature, hugeTreeFeatureConfig1, hugeTreeFeatureConfig2), sapling);
         register(resourceSaplingBlock,
@@ -124,7 +129,7 @@ public class Ferroustry {
         register(new ResourceStairsBlock(planks.defaultBlockState(), Block.Properties.copy(planks)), material + "_stairs", event.getRegistry());
         register(new FenceBlock(plank), material + "_fence", event.getRegistry());
         register(new RotatedPillarBlock(log), material + "_wood", event.getRegistry());
-        register(new LogBlock(MaterialColor.WOOD, log), "stripped_" + material + "_log", event.getRegistry());
+        register(new Block(log), "stripped_" + material + "_log", event.getRegistry());
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
     }

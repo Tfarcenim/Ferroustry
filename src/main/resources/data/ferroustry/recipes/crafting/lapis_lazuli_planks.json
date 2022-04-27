@@ -3,11 +3,11 @@
   "group": "planks",
   "ingredients": [
     {
-      "tag": "ferroustry:lapis_logs"
+      "tag": "ferroustry:lapis_lazuli_logs"
     }
   ],
   "result": {
-    "item": "ferroustry:lapis_planks",
+    "item": "ferroustry:lapis_lazuli_planks",
     "count": 4
   }
 }

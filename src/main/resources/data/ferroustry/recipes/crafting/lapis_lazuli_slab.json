@@ -6,11 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "ferroustry:lapis_planks"
+      "item": "ferroustry:lapis_lazuli_planks"
     }
   },
   "result": {
-    "item": "ferroustry:lapis_slab",
+    "item": "ferroustry:lapis_lazuli_slab",
     "count": 6
   }
 }

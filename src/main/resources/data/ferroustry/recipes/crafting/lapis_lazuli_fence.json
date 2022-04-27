@@ -10,11 +10,11 @@
       "tag": "forge:rods/wooden"
     },
     "W": {
-      "item": "ferroustry:lapis_planks"
+      "item": "ferroustry:lapis_lazuli_planks"
     }
   },
   "result": {
-    "item": "ferroustry:lapis_fence",
+    "item": "ferroustry:lapis_lazuli_fence",
     "count": 3
   }
 }

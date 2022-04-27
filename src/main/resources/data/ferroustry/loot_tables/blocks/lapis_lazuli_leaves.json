@@ -36,7 +36,7 @@
                   ]
                 }
               ],
-              "name": "ferroustry:lapis_leaves"
+              "name": "ferroustry:lapis_lazuli_leaves"
             },
             {
               "type": "minecraft:item",
@@ -55,7 +55,7 @@
                   ]
                 }
               ],
-              "name": "ferroustry:lapis_sapling"
+              "name": "ferroustry:lapis_lazuli_sapling"
             }
           ]
         }
