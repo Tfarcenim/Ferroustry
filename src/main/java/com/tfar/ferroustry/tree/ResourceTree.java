@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class ResourceTree extends AbstractMegaTreeGrower {

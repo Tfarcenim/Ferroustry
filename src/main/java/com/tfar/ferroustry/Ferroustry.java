@@ -84,7 +84,6 @@ public class Ferroustry {
     })
             .forEach(block -> map.put(block, ForgeRegistries.BLOCKS.getValue(new ResourceLocation(MODID, "stripped_" +
             block.getRegistryName().getPath()))));
-    //AxeItem.STRIPABLES = map;
   }
 
   private void client(final FMLClientSetupEvent event) {
@@ -144,6 +143,12 @@ public class Ferroustry {
         register(new RotatedPillarBlock(log), "stripped_" + material + "_log", event.getRegistry());
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
+    }
+
+    private static RotatedPillarBlock log(MaterialColor p_235430_0_, MaterialColor p_235430_1_) {
+      return new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, (p_lambda$func_235430_a_$36_2_) ->
+              p_lambda$func_235430_a_$36_2_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_235430_0_ : p_235430_1_)
+              .strength(2.0F).sound(SoundType.WOOD));
     }
 
     @SubscribeEvent
