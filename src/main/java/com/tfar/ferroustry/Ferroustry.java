@@ -8,6 +8,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.*;
+import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.gen.blockstateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.feature.*;
@@ -127,6 +128,12 @@ public class Ferroustry {
         register(new RotatedPillarBlock(log), "stripped_" + material + "_log", event.getRegistry());
         register(new RotatedPillarBlock(log), "stripped_" + material + "_wood", event.getRegistry());
       }
+    }
+
+    private static RotatedPillarBlock log(MaterialColor p_235430_0_, MaterialColor p_235430_1_) {
+      return new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, (p_lambda$func_235430_a_$36_2_) ->
+              p_lambda$func_235430_a_$36_2_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_235430_0_ : p_235430_1_)
+              .strength(2.0F).sound(SoundType.WOOD));
     }
 
     @SubscribeEvent
