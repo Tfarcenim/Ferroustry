@@ -152,5 +152,11 @@
   "block.ferroustry.copper_slab": "Copper Slab",
   "block.ferroustry.silver_leaves": "Silver Leaves",
   "block.ferroustry.copper_planks": "Copper Planks",
-  "block.ferroustry.lapis_lazuli_log": "Lapis Lazuli Log"
+  "block.ferroustry.lapis_lazuli_log": "Lapis Lazuli Log",
+  "item.ferroustry.aluminum_ingot": "Aluminum Ingot",
+  "item.ferroustry.bismuth_ingot": "Bismuth Ingot",
+  "item.ferroustry.copper_ingot": "Copper Ingot",
+  "item.ferroustry.lead_ingot": "Lead Ingot",
+  "item.ferroustry.silver_ingot": "Silver Ingot",
+  "item.ferroustry.tin_ingot": "Tin Ingot"
 }
