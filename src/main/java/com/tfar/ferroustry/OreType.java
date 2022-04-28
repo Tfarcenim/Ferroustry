@@ -1,13 +1,12 @@
 package com.tfar.ferroustry;
 
-import net.minecraft.block.Block;
-
-import static com.tfar.ferroustry.Ferroustry.MODID;
+import net.minecraft.world.level.block.Block;
 
 @SuppressWarnings("unused")
 public enum OreType {
   //vanilla
   coal(false, false),
+  copper(false, true),
   diamond(false, false),
   emerald(false, false),
   gold(false, true),
@@ -18,11 +17,11 @@ public enum OreType {
   //modded
   aluminum(true, true),
   bismuth(true, true),
-  copper(true, true),
   lead(true, true),
   //platinum(true),
   silver(true, true),
   tin(true, true);
+  private static final String MODID = Ferroustry.MODID;
 
   public final boolean isModded;
   public final boolean isIngot;

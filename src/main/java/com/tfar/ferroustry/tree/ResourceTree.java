@@ -1,39 +1,28 @@
 package com.tfar.ferroustry.tree;
 
-import net.minecraft.block.trees.BigTree;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.Holder;
+import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import java.util.Random;
 
-public class ResourceTree extends BigTree {
+public class ResourceTree extends AbstractMegaTreeGrower {
+  public Holder<ConfiguredFeature<TreeConfiguration, ?>> RESOURCE_TREE;
+  public Holder<ConfiguredFeature<TreeConfiguration, ?>> MEGA_RESOURCE_TREE;
 
-  private final Feature<BaseTreeFeatureConfig> treeFeatureConfigFeature;
-  private final BaseTreeFeatureConfig treeFeatureConfig;
-  private final Feature<BaseTreeFeatureConfig> hugeTreeFeatureConfigFeature;
-  private final BaseTreeFeatureConfig hugeTreeFeatureConfig1;
-  private final BaseTreeFeatureConfig hugeTreeFeatureConfig2;
-
-  public ResourceTree(Feature<BaseTreeFeatureConfig> treeFeatureConfigFeature,
-                      BaseTreeFeatureConfig treeFeatureConfig, Feature<BaseTreeFeatureConfig> hugeTreeFeatureConfigFeature,
-                      BaseTreeFeatureConfig hugeTreeFeatureConfig1,BaseTreeFeatureConfig hugeTreeFeatureConfig2) {
-    this.treeFeatureConfigFeature = treeFeatureConfigFeature;
-    this.treeFeatureConfig = treeFeatureConfig;
-    this.hugeTreeFeatureConfigFeature = hugeTreeFeatureConfigFeature;
-    this.hugeTreeFeatureConfig1 = hugeTreeFeatureConfig1;
-    this.hugeTreeFeatureConfig2 = hugeTreeFeatureConfig2;
+  public ResourceTree(Holder<ConfiguredFeature<TreeConfiguration, ?>> resource_tree, Holder<ConfiguredFeature<TreeConfiguration, ?>> mega_resource_tree) {
+    this.RESOURCE_TREE = resource_tree;
+    this.MEGA_RESOURCE_TREE = mega_resource_tree;
   }
 
   @Override
-  protected ConfiguredFeature<BaseTreeFeatureConfig,?> getConfiguredMegaFeature(Random random) {
-    return hugeTreeFeatureConfigFeature.configured(random.nextBoolean()
-            ? hugeTreeFeatureConfig1
-            : hugeTreeFeatureConfig2);
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredMegaFeature(Random random) {
+    return MEGA_RESOURCE_TREE;
   }
 
   @Override
-  protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random random, boolean b) {
-    return treeFeatureConfigFeature.configured(treeFeatureConfig);
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean b) {
+    return RESOURCE_TREE;
   }
 }
