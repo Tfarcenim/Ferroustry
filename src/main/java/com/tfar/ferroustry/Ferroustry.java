@@ -1,6 +1,7 @@
 package com.tfar.ferroustry;
 
 import com.tfar.ferroustry.tree.ResourceTree;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -146,8 +147,8 @@ public class Ferroustry {
     }
 
     private static RotatedPillarBlock log(MaterialColor p_235430_0_, MaterialColor p_235430_1_) {
-      return new RotatedPillarBlock(AbstractBlock.Properties.of(Material.WOOD, (p_lambda$func_235430_a_$36_2_) ->
-              p_lambda$func_235430_a_$36_2_.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_235430_0_ : p_235430_1_)
+      return new RotatedPillarBlock(Block.Properties.of(Material.WOOD, (blockState) ->
+                      blockState.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? p_235430_0_ : p_235430_1_)
               .strength(2.0F).sound(SoundType.WOOD));
     }
 
