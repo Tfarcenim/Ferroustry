@@ -1,8 +1,0 @@
-{
-    "parent": "block/slab_top",
-    "textures": {
-        "bottom": "ferroustry:block/lapis_planks",
-        "top": "ferroustry:block/lapis_planks",
-        "side": "ferroustry:block/lapis_planks"
-    }
-}

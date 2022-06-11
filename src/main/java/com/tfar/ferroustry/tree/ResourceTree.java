@@ -1,29 +1,30 @@
 package com.tfar.ferroustry.tree;
 
-import net.minecraft.block.trees.BigTree;
-import net.minecraft.world.biome.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.BaseTreeFeatureConfig;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.core.Holder;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class ResourceTree extends BigTree {
+public class ResourceTree extends AbstractMegaTreeGrower {
+  public Holder<ConfiguredFeature<TreeConfiguration, ?>> RESOURCE_TREE;
+  public Holder<ConfiguredFeature<TreeConfiguration, ?>> MEGA_RESOURCE_TREE;
 
-  private final BaseTreeFeatureConfig baseTreeFeatureConfig;
-
-  public ResourceTree(BaseTreeFeatureConfig treeFeatureConfigFeature) {
-    this.baseTreeFeatureConfig = treeFeatureConfigFeature;
+  public ResourceTree(Holder<ConfiguredFeature<TreeConfiguration, ?>> resource_tree, Holder<ConfiguredFeature<TreeConfiguration, ?>> mega_resource_tree) {
+    this.RESOURCE_TREE = resource_tree;
+    this.MEGA_RESOURCE_TREE = mega_resource_tree;
   }
 
-  @Nullable
-  protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredFeature(Random p_225546_1_, boolean p_225546_2_) {
-    return Feature.TREE.configured(baseTreeFeatureConfig);
+  @Override
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredMegaFeature(RandomSource random) {
+    return MEGA_RESOURCE_TREE;
   }
 
-  @Nullable
-  protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getConfiguredMegaFeature(Random p_225547_1_) {
-    return Feature.TREE.configured(p_225547_1_.nextBoolean() ? DefaultBiomeFeatures.MEGA_SPRUCE_TREE_CONFIG : DefaultBiomeFeatures.MEGA_PINE_TREE_CONFIG);
+  @Override
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean b) {
+    return RESOURCE_TREE;
   }
 }
