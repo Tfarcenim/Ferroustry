@@ -66,9 +66,9 @@ repositories{
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
-    runtimeOnly fg.deobf("curse.maven:rei-310111:3826460")
-    runtimeOnly fg.deobf("curse.maven:cloth-348521:3822832")
-    runtimeOnly fg.deobf("curse.maven:architectury-419699:3826032")
+    //runtimeOnly fg.deobf("curse.maven:rei-310111:3826460")
+    //runtimeOnly fg.deobf("curse.maven:cloth-348521:3822832")
+    //runtimeOnly fg.deobf("curse.maven:architectury-419699:3826032")
 }
 
 jar {
