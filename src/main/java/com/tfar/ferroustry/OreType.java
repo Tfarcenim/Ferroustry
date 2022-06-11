@@ -1,6 +1,7 @@
 package com.tfar.ferroustry;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 
 @SuppressWarnings("unused")
 public enum OreType {
@@ -258,21 +259,17 @@ public enum OreType {
   }
 
   public String getBasicItemmodel(BasicItemModelType type) {
-    switch (type) {
-
-      case stripped_log:
-        return "{\n" +
-                "\"parent\": \"" + MODID + ":block/stripped_" + trueName() + "_log\"\n" +
-                "}\n";
-      case stripped_wood:
-        return "{\n" +
-                "\"parent\": \"" + MODID + ":block/stripped_" + trueName() + "_wood\"\n" +
-                "}\n";
-      default:
-        return "{\n" +
-                "\"parent\": \"" + MODID + ":block/" + trueName() + "_" + type + "\"\n" +
-                "}\n";
-    }
+    return switch (type) {
+      case stripped_log -> "{\n" +
+              "\"parent\": \"" + MODID + ":block/stripped_" + trueName() + "_log\"\n" +
+              "}\n";
+      case stripped_wood -> "{\n" +
+              "\"parent\": \"" + MODID + ":block/stripped_" + trueName() + "_wood\"\n" +
+              "}\n";
+      default -> "{\n" +
+              "\"parent\": \"" + MODID + ":block/" + trueName() + "_" + type + "\"\n" +
+              "}\n";
+    };
   }
 
   public String getSaplingItemmodel() {
@@ -291,7 +288,7 @@ public enum OreType {
   }
 
   public static String getLootTable(Block b) {
-    String name = b.getRegistryName().toString();
+    String name = Ferroustry.getRegistryName(b).toString();
 
     return "{\n" +
             "  \"type\": \"minecraft:block\",\n" +

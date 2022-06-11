@@ -1,6 +1,7 @@
 package com.tfar.ferroustry.tree;
 
 import net.minecraft.core.Holder;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.grower.AbstractMegaTreeGrower;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -18,12 +19,12 @@ public class ResourceTree extends AbstractMegaTreeGrower {
   }
 
   @Override
-  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredMegaFeature(Random random) {
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredMegaFeature(RandomSource random) {
     return MEGA_RESOURCE_TREE;
   }
 
   @Override
-  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(Random random, boolean b) {
+  protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean b) {
     return RESOURCE_TREE;
   }
 }

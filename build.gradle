@@ -19,7 +19,7 @@ archivesBaseName = "${modid}"
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: "official", version: "1.18.2"
+    mappings channel: "official", version: "${mc_version}"
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -27,6 +27,8 @@ minecraft {
         client {
             workingDirectory project.file('run')
             property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 ferroustry {
                     source sourceSets.main
@@ -37,6 +39,8 @@ minecraft {
         server {
             workingDirectory project.file('run')
             property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             mods {
                 ferroustry {
                     source sourceSets.main
@@ -57,10 +61,14 @@ repositories{
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
+    maven { url "https://cursemaven.com" }
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}" //21
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
+    runtimeOnly fg.deobf("curse.maven:rei-310111:3826460")
+    runtimeOnly fg.deobf("curse.maven:cloth-348521:3822832")
+    runtimeOnly fg.deobf("curse.maven:architectury-419699:3826032")
 }
 
 jar {
@@ -77,6 +85,7 @@ jar {
     }
 }
 
+jar.finalizedBy('reobfJar')
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
