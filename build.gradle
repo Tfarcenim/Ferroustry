@@ -60,7 +60,7 @@ repositories{
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}" //21
+    minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 }
 
 jar {
@@ -77,6 +77,7 @@ jar {
     }
 }
 
+jar.finalizedBy('reobfJar')
 def reobfFile = file("$buildDir/reobfJar/output.jar")
 def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
