@@ -1,0 +1,18 @@
+{
+    "replace": false,
+    "values": [
+        "ferroustry:emerald_slab",
+        "ferroustry:bismuth_slab",
+        "ferroustry:silver_slab",
+        "ferroustry:iron_slab",
+        "ferroustry:lapis_lazuli_slab",
+        "ferroustry:redstone_slab",
+        "ferroustry:diamond_slab",
+        "ferroustry:copper_slab",
+        "ferroustry:quartz_slab",
+        "ferroustry:aluminum_slab",
+        "ferroustry:gold_slab",
+        "ferroustry:tin_slab",
+        "ferroustry:lead_slab"
+    ]
+}

@@ -2,7 +2,8 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "name": "ferroustry",
       "entries": [
         {
@@ -17,7 +18,9 @@
                     {
                       "condition": "minecraft:match_tool",
                       "predicate": {
-                        "item": "minecraft:shears"
+                        "items": [
+                          "minecraft:shears"
+                        ]
                       }
                     },
                     {
@@ -62,7 +65,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -71,11 +75,11 @@
               "condition": "minecraft:table_bonus",
               "enchantment": "minecraft:fortune",
               "chances": [
-                0.002,
-                0.0022222223,
-                0.0025,
-                0.0033333335,
-                0.01
+                0.02,
+                0.022222223,
+                0.025,
+                0.033333335,
+                0.1
               ]
             }
           ],
@@ -86,7 +90,8 @@
                 "min": 1.0,
                 "max": 2.0,
                 "type": "minecraft:uniform"
-              }
+              },
+              "add": false
             },
             {
               "function": "minecraft:explosion_decay"
@@ -104,7 +109,9 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "item": "minecraft:shears"
+                  "items": [
+                    "minecraft:shears"
+                  ]
                 }
               },
               {
@@ -126,7 +133,8 @@
       ]
     },
     {
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -158,7 +166,9 @@
               {
                 "condition": "minecraft:match_tool",
                 "predicate": {
-                  "item": "minecraft:shears"
+                  "items": [
+                    "minecraft:shears"
+                  ]
                 }
               },
               {

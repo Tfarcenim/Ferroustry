@@ -1,5 +1,5 @@
 {
-    "parent": "block/cube_column",
+    "parent": "minecraft:block/cube_column",
     "textures": {
         "end": "ferroustry:block/stripped_quartz_log_top",
         "side": "ferroustry:block/stripped_quartz_log"

@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "ferroustry:block/stripped_lapis_lazuli_log_top",
+        "side": "ferroustry:block/stripped_lapis_lazuli_log"
+    }
+}
