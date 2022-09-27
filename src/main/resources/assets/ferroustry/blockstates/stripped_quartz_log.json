@@ -1,7 +1,7 @@
 {
     "variants": {
         "axis=y":    { "model": "ferroustry:block/stripped_quartz_log" },
-        "axis=z":    { "model": "ferroustry:block/stripped_quartz_log", "x": 90 },
-        "axis=x":    { "model": "ferroustry:block/stripped_quartz_log", "x": 90, "y": 90 }
+        "axis=z":    { "model": "ferroustry:block/stripped_quartz_log_horizontal", "x": 90 },
+        "axis=x":    { "model": "ferroustry:block/stripped_quartz_log_horizontal", "x": 90, "y": 90 }
     }
 }

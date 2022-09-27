@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "ferroustry:lapis_lazuli_log",
+    "ferroustry:lapis_lazuli_wood",
+    "ferroustry:stripped_lapis_lazuli_log",
+    "ferroustry:stripped_lapis_lazuli_wood"
+  ]
+}

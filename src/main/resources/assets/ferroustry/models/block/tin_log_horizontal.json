@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column_horizontal",
+    "textures": {
+        "end": "ferroustry:block/tin_log_top",
+        "side": "ferroustry:block/tin_log"
+    }
+}
